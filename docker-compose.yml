@@ -1,0 +1,57 @@
+# version: '3'
+
+# services:
+#   db:
+#     image: postgres
+#     restart: always
+#     expose:
+#       - '5432'
+#     volumes:
+#       - pgdata:/var/lib/postgresql/data
+#   web:
+#     build: .
+#     command: bash -c "python manage.py migrate --no-input && python manage.py runserver 0.0.0.0:8000"
+
+#     volumes:
+#       - .:/code
+#     env_file:
+#       - .env
+#     ports:
+#       - '8000:8000'
+#     depends_on:
+#       - db
+
+# volumes:
+#   pgdata:
+
+version: '3'
+
+services:
+  app:
+    build: .
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - '8000:8000'
+    volumes:
+      - '.:/code/'
+    command: bash -c "python manage.py migrate --no-input &&
+      python manage.py runserver 0.0.0.0:8000"
+    depends_on:
+      - db
+
+  db:
+    image: postgres
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=
+      - POSTGRES_DB=telly
+    expose:
+      - '5432'
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
