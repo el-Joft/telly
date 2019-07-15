@@ -28,7 +28,7 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 # This can be used to toggle between your local testing db (db.sqlite3) and the PostgreSQL backend:
-DOCKER = True
+DOCKER = False
 if DEBUG:
     # This value is not safe for production usage. Refer to the Django documentation for more information.
     ALLOWED_HOSTS = ['*']
@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
     'api_v1',
 ]
 
@@ -94,8 +95,8 @@ else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'timothyfehintolu',
-            'USER': 'telly',
+            'NAME': 'telly',
+            'USER': 'postgres',
             'HOST': 'localhost',
             'PORT': 5432,
         }
@@ -109,6 +110,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
     {
         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'OPTIONS': {
+            'min_length': 8,
+        }
     },
     {
         'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
