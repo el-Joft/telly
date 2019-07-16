@@ -1,0 +1,9 @@
+language: python
+install:
+  - pip install tox
+matrix:
+  include:
+    - python: 3.5
+      env:
+        - TOX_ENV=py35
+script: tox -e $TOX_ENV
