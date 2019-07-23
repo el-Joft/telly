@@ -1,15 +1,18 @@
 """ Create user model """
 
-from django.db import models
+import uuid
+
 from django.contrib.auth.models import AbstractBaseUser
+from django.db import models
+
 from api_v1.models.base import CommonFieldsMixin
-from api_v1.models.user_manager import UsersManager
 from api_v1.models.role import Role
+from api_v1.models.user_manager import UsersManager
 
 
 class User(AbstractBaseUser, CommonFieldsMixin):
     """Users model."""
-
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     email = models.EmailField(unique=True, null=False)
     first_name = models.CharField(max_length=30, null=False)
     middle_name = models.CharField(max_length=30, null=True, blank=True)
@@ -21,7 +24,7 @@ class User(AbstractBaseUser, CommonFieldsMixin):
     birthday = models.DateTimeField(null=True, blank=True)
     bio = models.TextField(null=True, blank=True)
     profile_picture = models.CharField(max_length=500, null=False)
-    active = models.BooleanField(default=True)
+    active = models.BooleanField(default=False)
     admin = models.BooleanField(default=False)
     staff = models.BooleanField(default=False)
     points = models.IntegerField(default=0)

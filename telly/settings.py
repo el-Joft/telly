@@ -11,21 +11,20 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+from dotenv import load_dotenv
 
+load_dotenv()
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'rxmhk7wr58_e0a%4b7=r(r^bgk*o9ujzh2ww@fhd))!x!w%gaw'
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
-ALLOWED_HOSTS = []
 
 # This can be used to toggle between your local testing db (db.sqlite3) and the PostgreSQL backend:
 DOCKER = False
@@ -58,11 +57,13 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'telly.urls'
-
+TEMP_DIR = os.path.join(BASE_DIR, 'api_v1/templates/')
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            TEMP_DIR,
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -141,3 +142,26 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+# EMAIL_HOST = os.getenv('EMAIL_HOST')
+# EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS')
+# EMAIL_PORT = os.getenv('EMAIL_PORT')
+# EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
+# EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
+DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')
+
+# EMAIL_HOST = 'smtp.sendgrid.net'
+# EMAIL_PORT = 587
+# EMAIL_HOST_USER = 'el-joft'
+# EMAIL_HOST_PASSWORD = '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'
+# EMAIL_USE_TLS = True
+
+
+SENDGRID_API_KEY = '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'
+
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_HOST_USER = 'apikey'
+EMAIL_HOST_PASSWORD = SENDGRID_API_KEY
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True

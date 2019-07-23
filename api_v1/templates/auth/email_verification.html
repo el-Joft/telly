@@ -1,0 +1,186 @@
+<!doctype>
+<html>
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Telly Email Verification</title>
+    <link href="https://fonts.googleapis.com/css?family=Bree+Serif&display=swap" rel="stylesheet">
+    <style>
+      section {
+        font-family: 'Bree Serif', serif;
+        text-align: center;
+        margin: auto;
+        width: 80%;
+        text-decoration: none;
+      }
+
+      section a {
+        color: black;
+      }
+
+      .telly_logo {
+        width: 270px;
+        height: 70px;
+        margin-top: 30px;
+      }
+
+      .telly_envelope {
+        background-color: #556BA6;
+        height: 300px;
+      }
+
+      .telly_envelope img {
+        margin-top: 15px;
+        width: 50%;
+        height: 250px
+      }
+
+      .verify {
+        color: #556BA6;
+        font-size: 25px;
+      }
+
+      .verify_text h2 {
+        color: black;
+        font-family: 'Bree Serif', serif;
+      }
+
+      .small_text {
+        font-size: 16px;
+        margin-top: 14px;
+        color: #556BA6;
+      }
+
+      .email_body {
+        color: #424242;
+        margin: auto;
+        width: 40%;
+      }
+
+      .email_body_cont {
+        display: flex;
+      }
+
+      .verify_button {
+        background-color: #556BA6;
+        color: #424242;
+        padding: 2px 12px;
+        font-size: 20px;
+        margin-top: 40px;
+      }
+
+      .verify_button h2 {
+        color: #ffff;
+      }
+
+      .email_body_a {
+        color: black;
+      }
+
+      a {
+        text-decoration: none;
+      }
+
+      .email_body_b1 {
+        margin-left: 30px;
+      }
+
+      .email_body_b2 {
+        margin-left: 17px;
+      }
+
+      .email_body_b {
+        color: #556BA6;
+        margin-left: 35px;
+      }
+
+      .footer_text {
+        font-size: 14px;
+        margin-top: 20px;
+      }
+
+      @media screen and (max-width: 812px) {
+        .small_text {
+          font-size: 12px;
+        }
+
+        .email_body {
+          width: 100%;
+          font-size: 13px;
+        }
+
+        .email_body_b1 {
+          margin-left: 50px;
+        }
+
+        .email_body_b {
+          color: #424242;
+          margin-left: 10px;
+        }
+
+        .footer_text {
+          font-size: 12px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <section class="telly_logo">
+      <img width='74' height='45'
+        src="https://res.cloudinary.com/fehintolu/image/upload/v1563830498/Telly_qhibpp.png" />
+
+
+    </section>
+    <section class="telly_envelope">
+      <img src="https://res.cloudinary.com/fehintolu/image/upload/v1563830518/Group_cpbyro.png" />
+
+    </section>
+    <section class='verify_text'>
+      <div>
+        <h2 class="verify">{{ template_type }}</h2>
+      </div>
+      <div class="small_text">
+        <p>
+          <strong>{{ small_text_detail }}</strong>
+        </p>
+      </div>
+      <div>
+        <div class="email_body">
+          <div class="email_body_cont">
+            <div class="email_body_a">Email:</div>
+            <div class="email_body_b">{{ email }}</div>
+          </div>
+          <br>
+          <div class="email_body_cont">
+            <div class="email_body_a">Link:</div>
+            <div class="email_body_b1"> https://www.telly.com/verifyemail?/</span>
+            </div>
+
+          </div>
+          <a href="{{ domain }}{% url 'api_v1:activate'  uidb64=uid token=token %}">
+            <div class="verify_button">
+              <h2 style="font-size: 15px;">VERIFY</h2>
+            </div>
+          </a>
+          <div>
+            <p>Or copy this link to your browser</p>
+            <p>{{ verification_link }}</p>
+          </div>
+
+        </div>
+      </div>
+      <p class="footer_text">
+        Didn’t create an account? Feel free to ignore this email or
+        <span style="color:#F11010"><u>CONTACT US</u></span> if you have any
+        issues.
+      </p>
+      <p style="font-size: 12px">Click this here to <a href="#">unsubsribe</a></p>
+    </section>
+
+
+  </body>
+
+</html>

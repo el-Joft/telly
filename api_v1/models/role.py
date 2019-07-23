@@ -1,14 +1,14 @@
 """Create the Roles Model"""
-
-# pylint: disable=too-few-public-methods,
-# undefined-variable, too-many-arguments
+import uuid
 
 from django.db import models
+
 from api_v1.models.base import CommonFieldsMixin
 
 
 class Role(CommonFieldsMixin):
     """Create role model"""
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     ROLE_TYPES = (
         ('superadmin', 'Super Admin'),
         ('admin', 'Admin'),
