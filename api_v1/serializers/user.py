@@ -30,7 +30,7 @@ class UsersSerializer(serializers.HyperlinkedModelSerializer):
         """Access fields and create returned object."""
         model = User
         fields = ('id', 'first_name', 'email', 'role', 'mobile_number',
-                  'last_name', 'username', 'password',
+                  'last_name', 'username', 'password', 'token',
                   'created_at', 'updated_at',)
         extra_kwargs = {
             "password": {"write_only": True}

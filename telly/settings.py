@@ -123,6 +123,11 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+REST_FRAMEWORK = {
+  'DEFAULT_AUTHENTICATION_CLASSES': (
+    'api_v1.helpers.auth.TokenAuthentication',
+  ),
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
@@ -143,22 +148,11 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-
-# EMAIL_HOST = os.getenv('EMAIL_HOST')
-# EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS')
-# EMAIL_PORT = os.getenv('EMAIL_PORT')
-# EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
-# EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')
 
-# EMAIL_HOST = 'smtp.sendgrid.net'
-# EMAIL_PORT = 587
-# EMAIL_HOST_USER = 'el-joft'
-# EMAIL_HOST_PASSWORD = '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'
-# EMAIL_USE_TLS = True
 
-
-SENDGRID_API_KEY = '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'
+SECRET = os.getenv('SECRET')
+SENDGRID_API_KEY = os.getenv('SENDGRID_API_KEY')
 
 EMAIL_HOST = 'smtp.sendgrid.net'
 EMAIL_HOST_USER = 'apikey'

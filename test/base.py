@@ -10,7 +10,6 @@ class BaseTestCase(TestCase):
 
     @classmethod
     def setUpClass(cls):
-
         # We need to first run setUpClass function that we
         # inherited from TestCase.
         super(BaseTestCase, cls).setUpClass()
@@ -29,23 +28,32 @@ class BaseTestCase(TestCase):
             "first_name": "Firstname",
             "password": "123456ABC",
             "last_name": "lastname",
-            "username": "test",
+            "username": "test1",
             "mobile_number": "+2348136681130",
             "email": "test1@gmail.com",
-            "role_id": self.role.id
+            "role_id": self.role.id,
         }
         self.user_data_2 = {
             "first_name": "Firstname",
             "password": "123456ABC",
             "last_name": "lastname",
             "mobile_number": "+2348136681131",
-            "username": "test",
+            "username": "test2",
             "email": "test2@gmail.com",
-            "role_id": self.role.id
+            "role_id": self.role.id,
+        }
+
+        self.register = {
+            "username": "el-Jofty",
+            "password": "toluene010",
+            "email": "test3@gmail.com",
+            "mobile_number": "08136681190",
+            "first_name": "Timothy",
+            "last_name": "Fehintolu"
         }
 
         self.new_user = User(**self.user_data)
 
         self.new_user_2 = User(**self.user_data_2)
-
+        self.new_user.active = True
         self.new_user.save()
