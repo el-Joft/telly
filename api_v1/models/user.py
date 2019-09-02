@@ -28,6 +28,7 @@ class User(AbstractBaseUser, CommonFieldsMixin):
     admin = models.BooleanField(default=False)
     staff = models.BooleanField(default=False)
     points = models.IntegerField(default=0)
+    token = models.TextField(blank=True, default=0)
     role = models.ForeignKey(Role,  on_delete=models.CASCADE)
     objects = UsersManager()
 
